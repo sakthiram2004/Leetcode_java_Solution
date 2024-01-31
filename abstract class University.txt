@@ -1,0 +1,31 @@
+abstract class University
+{
+String university;
+String department[];
+integer stud[];
+
+class SoC extends University
+{
+SoC()
+{
+department=new String[]{"CSE","IT","ICT"};
+}
+
+} 
+
+class SEEE extends University
+{
+
+SEEE()
+{
+departments=new String[]{"ECE","EEE","EIE"};
+}
+}
+
+}
+
+class Student
+{
+int stuid;
+String sname;
+double plus2mark;

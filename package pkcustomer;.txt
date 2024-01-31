@@ -1,0 +1,72 @@
+package pkcustomer;
+import java.io.*;
+import pkaccount.sb.*;
+import pkaccount.fd.*;
+
+class Customer
+{
+int cust_id;
+String name;
+String address;
+SBAccount sb;
+FDAccount fd;
+BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+static int sbaccnum=8204;
+static int fdaccnum=2010; 
+Customer(int cust_id,String name,String address)
+{
+this.cust_id=cust_id;
+this.name=name;
+this.address=address;
+}
+pouvoid createAccount(int type)throws IOException
+{
+if(type==1)
+{
+System.out.println("Enter initial amount for deposit:");
+double amt=Double.valueOf(br.readLine());
+if(amt>0)
+sb=new SBAccount(sbaccnum++,amt);
+System.out.println("Yourt SBAccount is crteated Sucessfully with availabe balance="+amt);
+}
+else if(type ==2)
+{
+System.out.println("Enter period for FDAccount:");
+int period=Integer.valueOf(br.readLine());
+System.out.println("Enter initial amount for deposit:");
+double amt=Double.valueOf(br.readLine());
+if(amt>0)
+fd=new FDAccount(fdaccnum++,period,amt);
+System.out.println("Yourt FDAccount is crteated Sucessfully");
+System.out.println("your FDAccount is created sucessfully with available balance="+amt);
+}
+else
+System.out.println("Invalid account type");
+}
+
+void transaction(int type)throws IOException
+{
+if (type==1)
+{
+System.out.println("Enter the amount to deposit:");
+double amt=Double.valueOf(br.readLine());
+sb.deposit(amt);
+}
+else if(type==2)
+{
+System.out.println("Enter the amount to withdraw:");
+double amt=Double.valueOf(br.readLine());
+sb.withdraw(amt);
+}
+else if(type==3)
+{
+sb.calc_interest();
+}
+else if(type==4)
+{
+fd.close();
+}
+else
+System.out.println("Invalid transaction type!");
+}
+
